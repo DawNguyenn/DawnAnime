@@ -1,0 +1,317 @@
+/* --- DAWNANIME PostCard (Orange/Gold Edition) --- */
+:root {
+    /* Bảng màu chủ đạo của DAWNANIME */
+    --dawn-primary: #f97316; /* Orange 500 */
+    --dawn-primary-glow: rgba(249, 115, 22, 0.4);
+    --dawn-accent: #fbbf24;  /* Amber/Gold */
+    
+    --dawn-heart: #ef4444;
+    --dawn-dislike: #6b7280;
+    --dawn-bg-card: #1a1a1a; /* Tối hơn một chút để nổi bật màu cam */
+    --dawn-border: rgba(255, 255, 255, 0.08);
+    --dawn-text-main: #f8fafc;
+    --dawn-text-sub: #94a3b8;
+}
+
+.post-card {
+    background: var(--dawn-bg-card);
+    border-radius: 20px;
+    border: 1px solid var(--dawn-border);
+    padding: 20px; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    position: relative;
+    overflow: visible;
+
+    max-width: 650px; 
+    width: 90%;
+    margin: 0 auto 28px auto;
+}
+
+.post-card:hover {
+    border-color: rgba(249, 115, 22, 0.4); /* Đổi sang Cam */
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    transform: translateY(-2px);
+}
+
+/* --- Post Body --- */
+.post-body {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.post-content {
+    color: #e2e8f0;
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 16px;
+    white-space: pre-wrap;
+    word-break: break-word;
+}
+
+/* --- Khung hình cố định tỉ lệ 4:5 --- */
+.post-image-aspect-container {
+    width: 100%;
+    aspect-ratio: 4 / 5; 
+    border-radius: 12px;
+    overflow: hidden;
+    background: #121212;
+    border: 1px solid var(--dawn-border);
+    position: relative;
+    flex-shrink: 0;
+}
+
+.post-image-aspect-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: center;
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.post-card:hover .post-image-aspect-container img {
+    transform: scale(1.05);
+}
+
+/* --- Header & User Info --- */
+.post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 18px;
+}
+
+.post-user-info-group {
+    display: flex;
+    gap: 14px;
+    align-items: center;
+}
+
+.author-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.author-name-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 2px;
+}
+
+/* --- Avatar Nâng cao --- */
+.author-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    object-fit: cover;
+    position: relative;
+    box-shadow: 0 0 0 2px var(--dawn-border);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.post-card:hover .author-avatar {
+    transform: scale(1.1) rotate(5deg);
+    border-color: var(--dawn-primary);
+    box-shadow: 0 0 15px var(--dawn-primary-glow);
+    border-radius: 50%;
+}
+
+/* --- Username với hiệu ứng chạy màu Cam/Vàng --- */
+.username {
+    background: linear-gradient(to right, #f8fafc, var(--dawn-primary), var(--dawn-accent), #f8fafc);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shineText 3s linear infinite;
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.username:hover {
+    filter: brightness(1.2);
+}
+
+@keyframes shineText {
+    to { background-position: 200% center; }
+}
+
+/* --- Badge Level Pulse Cam --- */
+.user-badge {
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--dawn-primary), var(--dawn-accent));
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 800;
+    padding: 1px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    animation: levelPulse 2s infinite;
+}
+
+@keyframes levelPulse {
+    0% { box-shadow: 0 0 5px var(--dawn-primary-glow); }
+    50% { box-shadow: 0 0 15px var(--dawn-primary-glow), 0 0 20px rgba(249, 115, 22, 0.2); }
+    100% { box-shadow: 0 0 5px var(--dawn-primary-glow); }
+}
+
+.user-badge::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -60%;
+    width: 20%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.4);
+    transform: rotate(30deg);
+    animation: bolt 3s infinite;
+}
+
+@keyframes bolt {
+    0% { left: -60%; }
+    20% { left: 120%; }
+    100% { left: 120%; }
+}
+
+.post-time {
+    color: var(--dawn-text-sub);
+    font-size: 0.85rem;
+    font-weight: 400;
+    opacity: 0.8;
+}
+
+/* --- Options & Menu --- */
+.options-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: var(--dawn-text-sub);
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.options-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--dawn-primary);
+    transform: rotate(90deg);
+}
+
+.options-btn svg {
+    transition: all 0.3s ease;
+}
+
+.options-btn:hover svg {
+    filter: drop-shadow(0 0 5px var(--dawn-primary));
+}
+
+.options-menu {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 8px;
+    width: 200px;
+    background: #252525;
+    border: 1px solid var(--dawn-border);
+    border-radius: 14px;
+    padding: 8px;
+    z-index: 100;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(10px);
+}
+
+.menu-item {
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: var(--dawn-text-main);
+    font-size: 0.9rem;
+    font-weight: 500;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.menu-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(249, 115, 22, 0.1), transparent);
+    transition: width 0.3s ease;
+    z-index: -1;
+}
+
+.menu-item:hover::before {
+    width: 100%;
+}
+
+.menu-item:hover svg {
+    color: var(--dawn-primary);
+    transform: scale(1.1);
+}
+
+/* --- Post Actions --- */
+.post-actions {
+    display: flex;
+    gap: 12px;
+    border-top: 1px solid var(--dawn-border);
+    padding-top: 16px;
+    margin-top: 8px;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.03);
+    border: none;
+    color: var(--dawn-text-sub);
+    cursor: pointer;
+    font-weight: 600;
+    flex: 1;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--dawn-primary); /* Hover nút action cũng ra màu cam */
+}
+
+.heart-btn.active { 
+    color: var(--dawn-heart); 
+    background: rgba(239, 68, 68, 0.1); 
+}
+
+/* --- Mobile --- */
+@media (max-width: 640px) {
+    .post-card {
+        border-radius: 0;
+        max-width: 100%;
+        padding: 16px;
+        width: 100%;
+    }
+    
+    .action-btn {
+        padding: 10px 5px;
+        font-size: 0.8rem;
+    }
+}

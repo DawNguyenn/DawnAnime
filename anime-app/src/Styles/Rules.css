@@ -1,0 +1,75 @@
+/* Rules.css */
+
+.rules-container {
+    @apply max-w-4xl mx-auto py-16 px-6 text-white;
+}
+
+.rules-header {
+    @apply text-center mb-12;
+}
+
+.rules-title {
+    @apply text-4xl font-black uppercase tracking-widest mb-4 italic;
+    background: linear-gradient(to right, #f59e0b, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.3));
+}
+
+.rules-subtitle {
+    @apply text-gray-400;
+}
+
+.rule-card {
+    @apply border rounded-2xl overflow-hidden transition-all duration-500 mb-4;
+}
+
+/* Trạng thái khi đóng */
+.rule-card-closed {
+    @apply bg-[#0f0f0f] border-gray-800 hover:border-amber-900/50;
+}
+
+/* Trạng thái khi mở */
+.rule-card-open {
+    background: linear-gradient(145deg, #1a1a1a, #0d0d0d);
+    border-color: #f59e0b;
+    box-shadow: 0 0 30px rgba(245, 158, 11, 0.1);
+}
+
+.rule-button {
+    @apply w-full flex items-center justify-between p-6 text-left outline-none;
+}
+
+.rule-info {
+    @apply flex items-center space-x-4;
+}
+
+.rule-title-text {
+    @apply text-lg font-bold uppercase tracking-tight;
+}
+
+.rule-content-wrapper {
+    @apply px-14 pb-8 pt-2 animate-fadeIn;
+}
+
+.rule-list {
+    @apply space-y-4;
+}
+
+.rule-item {
+    @apply flex items-start space-x-3 text-gray-300 text-base leading-relaxed;
+}
+
+.rule-bullet {
+    @apply text-amber-500 font-bold text-xl leading-none;
+}
+
+/* Hiệu ứng Fade In cho nội dung */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadeIn {
+    animation: fadeIn 0.4s ease-out forwards;
+}

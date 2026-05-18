@@ -1,0 +1,300 @@
+/* --- 1. CẤU TRÚC CHÍNH --- */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 20px;
+    background: radial-gradient(circle at center, #1a0505 0%, #000000 100%);
+    min-height: 90vh;
+}
+
+.profile-card {
+    background: #111111;
+    width: 100%;
+    max-width: 480px;
+    border-radius: 20px;
+    padding: 40px;
+    border: 1px solid #222;
+    box-shadow: 0 0 30px rgba(255, 69, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+/* Hiệu ứng viền đỏ chạy nhẹ phía trên card */
+.profile-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #ff4500, transparent);
+}
+
+/* --- 2. AVATAR & THÔNG TIN CƠ BẢN --- */
+.avatar-wrapper {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    margin: 0 auto 20px;
+}
+
+.profile-avatar-img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid #ff4500;
+    box-shadow: 0 0 15px rgba(255, 69, 0, 0.5);
+    background: #222;
+}
+
+.profile-level-badge {
+    display: inline-block;
+    background: #ff4500;
+    color: white;
+    padding: 5px 15px;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    box-shadow: 0 4px 10px rgba(255, 69, 0, 0.3);
+}
+
+.user-name-title {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin: 5px 0;
+    background: linear-gradient(to bottom, #ffffff 0%, #bbbbbb 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.5px;
+    text-transform: capitalize;
+    transition: 0.3s ease;
+}
+
+.profile-display-info:hover .user-name-title {
+    background: linear-gradient(to bottom, #ffffff 0%, #ff4500 100%);
+    -webkit-background-clip: text;
+}
+
+/* --- 3. HỆ THỐNG THANH KINH NGHIỆM (EXP) - ĐÃ TỐI ƯU --- */
+.exp-bar-outer {
+    margin: 10px 0 25px;
+}
+
+.exp-bar-container {
+    width: 100%;
+    height: 12px;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid #333;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.exp-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #ff8c00, #ff4500);
+    border-radius: 10px;
+    position: relative;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.5);
+    /* Chạy từ 0 lên mượt mà */
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.exp-glow {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+    animation: shine 2s infinite;
+}
+
+.exp-text {
+    font-size: 0.85rem;
+    color: #888;
+    margin-top: 5px;
+    text-align: right;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* --- 4. VIEW MODE (CHẾ ĐỘ XEM) --- */
+.view-mode-content {
+    text-align: left;
+    animation: fadeIn 0.3s ease;
+}
+
+.info-item {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.info-item label {
+    display: block;
+    color: #ff4500;
+    font-size: 0.7rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.info-item span {
+    color: #fff;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 1rem;
+    text-shadow: 0 0 8px rgba(255, 69, 0, 0.2);
+}
+
+.bio-text {
+    color: #b3b3b3;
+    font-style: italic;
+    line-height: 1.5;
+    font-size: 0.95rem;
+    background: #0a0a0a;
+    padding: 12px;
+    border-radius: 8px;
+    border-left: 3px solid #ff4500;
+}
+
+.edit-toggle-btn {
+    width: 100%;
+    background: transparent;
+    color: #fff;
+    border: 1px dashed #ff4500;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: 0.3s;
+    margin-top: 10px;
+}
+
+.edit-toggle-btn:hover {
+    background: rgba(255, 69, 0, 0.1);
+    border-style: solid;
+    transform: scale(1.02);
+}
+
+/* --- 5. EDIT MODE (CHẾ ĐỘ SỬA) --- */
+.profile-edit-form {
+    animation: slideUp 0.3s ease;
+}
+
+.input-group {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.input-group label {
+    display: block;
+    color: #ff4500;
+    margin-bottom: 8px;
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    padding: 12px 15px;
+    color: white;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.input-group textarea {
+    min-height: 100px;
+    resize: none;
+}
+
+.input-group input:focus, .input-group textarea:focus {
+    outline: none;
+    border-color: #ff4500;
+    background: #222;
+    box-shadow: 0 0 10px rgba(255, 69, 0, 0.1);
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+    justify-content: center;
+}
+
+.save-btn {
+    background: #ff4500;
+    color: white;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 900;
+    text-transform: uppercase;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.save-btn:hover:not(:disabled) {
+    background: #ff5e1a;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 69, 0, 0.4);
+}
+
+.cancel-btn {
+    background: transparent;
+    color: #666;
+    border: 1px solid #333;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cancel-btn:hover {
+    color: white;
+    border-color: #666;
+}
+
+/* --- 6. ANIMATIONS & RESPONSIVE --- */
+@keyframes shine {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.animate-spin { animation: spin 1s linear infinite; }
+
+@media (max-width: 480px) {
+    .profile-card { padding: 25px 20px; }
+    .button-group { flex-direction: column; }
+    .save-btn, .cancel-btn { width: 100%; }
+}

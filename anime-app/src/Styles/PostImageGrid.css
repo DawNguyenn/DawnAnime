@@ -1,0 +1,108 @@
+.post-image-grid {
+    display: grid;
+    gap: 4px;
+    margin-top: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #1a1a1a; /* Màu nền tối cho dự án DAWN */
+}
+
+/* Các layout linh hoạt */
+.post-image-grid.count-1 { grid-template-columns: 1fr; }
+.post-image-grid.count-2 { grid-template-columns: 1fr 1fr; }
+.post-image-grid.count-3 { grid-template-columns: 1fr 1fr; }
+.post-image-grid.count-3 .grid-item:first-child { grid-row: span 2; }
+.post-image-grid.count-4 { grid-template-columns: 1fr 1fr; }
+
+.grid-item {
+    position: relative;
+    height: 250px;
+    cursor: zoom-in;
+    overflow: hidden;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover img {
+    transform: scale(1.05);
+}
+
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6); /* Lớp phủ mờ giúp nhìn thấy ảnh bên dưới */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    pointer-events: none; /* Giúp click xuyên qua lớp phủ */
+}
+/* Container chính của lưới ảnh */
+.post-image-grid {
+    display: grid;
+    gap: 4px;
+    margin-top: 12px;
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    max-height: 500px;
+}
+
+/* Cấu trúc lưới linh hoạt dựa trên số lượng ảnh */
+.post-image-grid.count-1 { grid-template-columns: 1fr; }
+.post-image-grid.count-2 { grid-template-columns: 1fr 1fr; }
+.post-image-grid.count-3 { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px; }
+.post-image-grid.count-3 .grid-item:first-child { grid-row: span 2; }
+.post-image-grid.count-4 { grid-template-columns: 1fr 1fr; grid-template-rows: 200px 200px; }
+
+/* Item chứa ảnh */
+.grid-item {
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    background-color: #1a1a1a; /* Màu nền chờ để tránh bị đen thui khi ảnh chưa tải */
+}
+
+/* Ảnh thực tế */
+.actual-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    display: block;
+}
+
+.grid-item:hover .actual-img {
+    transform: scale(1.05);
+}
+
+/* Lớp phủ số lượng (+X) */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Làm tối ảnh cuối */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none; /* Click xuyên qua lớp phủ để vào Lightbox */
+}
+
+.image-overlay span {
+    color: #ffffff;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}

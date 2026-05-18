@@ -1,0 +1,62 @@
+/* Container chính: Tăng khoảng cách an toàn cho Mobile */
+footer {
+  padding-bottom: env(safe-area-inset-bottom); /* Tránh đè lên thanh điều hướng của iPhone */
+}
+
+/* 1. Tiêu đề Logo trên Mobile */
+.footer-logo {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .footer-logo {
+    text-align: left;
+    margin-bottom: 0;
+  }
+}
+
+/* 2. Căn giữa các cột trên Mobile (Dưới 768px) */
+@media (max-width: 767px) {
+  .footer-grid-container {
+    text-align: center;
+    gap: 2.5rem !important; /* Tăng khoảng cách giữa các khối để tránh bị rối */
+  }
+
+  .footer-social-icons {
+    justify-content: center; /* Căn giữa icon mạng xã hội */
+  }
+
+  .footer-links-list li {
+    padding: 8px 0; /* Tăng diện tích bấm cho ngón tay (Touch target) */
+    font-size: 15px; /* Chữ to hơn một chút để dễ đọc trên màn hình nhỏ */
+  }
+
+  .footer-bottom-text {
+    text-align: center;
+    line-height: 1.6;
+  }
+}
+
+/* 3. Hiệu ứng Hover mượt mà (Chỉ áp dụng cho các thiết bị có chuột) */
+@media (hover: hover) {
+  .footer-links-list li:hover {
+    padding-left: 5px; /* Nhích nhẹ sang phải khi di chuột */
+  }
+}
+
+/* 4. Animation nhẹ khi xuất hiện trên Mobile */
+.footer-item-animate {
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

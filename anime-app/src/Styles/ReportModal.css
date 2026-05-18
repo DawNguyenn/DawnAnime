@@ -1,0 +1,246 @@
+/* --- ReportModal.css - FINAL OPTIMIZED VERSION --- */
+
+:root {
+    --report-primary: #f97316; /* Cam thương hiệu DAWNANIME */
+    --report-bg: #1a1a1a;
+    --report-border: rgba(249, 115, 22, 0.3);
+    --report-glow: rgba(249, 115, 22, 0.15);
+    --text-main: #e2e8f0;
+    --text-muted: #94a3b8;
+    --z-index-modal: 99999; /* Đảm bảo cao hơn mọi thành phần khác */
+}
+
+/* Overlay phủ toàn màn hình - Sử dụng Portal để render */
+.report-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: var(--z-index-modal);
+    animation: modalFadeIn 0.2s ease-out;
+    /* Ngăn chặn nhấp nháy bằng cách tối ưu layer render */
+    will-change: opacity;
+}
+
+/* Khối Modal chính */
+.report-modal {
+    width: 90%;
+    max-width: 440px;
+    background: var(--report-bg);
+    border: 1px solid var(--report-border);
+    border-radius: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7), 
+                0 0 20px var(--report-glow);
+    overflow: hidden;
+    position: relative;
+    animation: modalSlideUp 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    /* Chống nhấp nháy khi có animation chồng chéo */
+    backface-visibility: hidden;
+}
+
+/* Header */
+.report-modal-header {
+    padding: 20px 24px;
+    background: linear-gradient(to bottom, rgba(249, 115, 22, 0.08), transparent);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.report-modal-header h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--report-primary);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    font-weight: 800;
+}
+
+.close-x {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.close-x:hover {
+    background: rgba(249, 115, 22, 0.2);
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+/* Body & Content */
+.report-modal-body {
+    padding: 24px;
+}
+
+.report-modal-body p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.report-options {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.report-option-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 18px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 14px;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.report-option-item:hover {
+    background: rgba(249, 115, 22, 0.05);
+    border-color: rgba(249, 115, 22, 0.3);
+    transform: translateX(4px);
+}
+
+/* Custom Radio Styling */
+.report-option-item input[type="radio"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #3f3f46;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: border-color 0.2s;
+}
+
+.report-option-item input[type="radio"]:checked {
+    border-color: var(--report-primary);
+    background: var(--report-primary);
+    box-shadow: 0 0 12px var(--report-glow);
+}
+
+.report-option-item input[type="radio"]:checked::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #fff;
+    border-radius: 50%;
+}
+
+.radio-label {
+    color: var(--text-main);
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+/* Highlighting Selected Item */
+.report-option-item:has(input:checked) {
+    background: rgba(249, 115, 22, 0.1);
+    border-color: var(--report-primary);
+}
+
+/* Footer */
+.report-modal-footer {
+    padding: 20px 24px;
+    background: rgba(0, 0, 0, 0.3);
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-cancel, .btn-submit {
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: none;
+    font-size: 0.9rem;
+}
+
+.btn-cancel {
+    background: #27272a;
+    color: var(--text-muted);
+}
+
+.btn-cancel:hover {
+    background: #3f3f46;
+    color: #fff;
+}
+
+.btn-submit {
+    background: var(--report-primary);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(249, 115, 22, 0.3);
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(249, 115, 22, 0.4);
+    filter: brightness(1.1);
+}
+
+.btn-submit:disabled {
+    background: #271d17;
+    color: #5c4436;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Keyframes */
+@keyframes modalFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes modalSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* Mobile Tweak */
+@media (max-width: 480px) {
+    .report-modal {
+        width: 95%;
+        border-radius: 16px 16px 0 0;
+        position: absolute;
+        bottom: 0;
+        animation: mobileSlideUp 0.3s ease-out;
+    }
+}
+
+@keyframes mobileSlideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}

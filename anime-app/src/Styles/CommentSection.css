@@ -1,0 +1,291 @@
+/* --- CommentSection.css (DAWNANIME Orange Edition) --- */
+
+:root {
+    --primary-color: #f97316; /* Cam thương hiệu DAWNANIME */
+    --primary-glow: rgba(249, 115, 22, 0.3);
+    --accent-color: #ef4444;  /* Màu cho nút Xóa/Báo cáo */
+    --gold-color: #fbbf24;    /* Màu vàng bổ trợ cho Badge */
+    --bg-dark: #121212;
+    --card-bg: rgba(255, 255, 255, 0.03);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --text-main: #e0e0e0;
+    --text-muted: #999;
+    --transition-fast: 0.2s ease;
+    --transition-smooth: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.comments-section {
+    padding: 1rem;
+    background: var(--bg-dark);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    margin-top: 10px;
+}
+
+/* --- Danh sách bình luận --- */
+.comments-list {
+    max-height: 500px;
+    overflow-y: auto;
+    padding-right: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+
+/* Custom Scrollbar Cam */
+.comments-list::-webkit-scrollbar {
+    width: 4px;
+}
+.comments-list::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 10px;
+}
+.comments-list::-webkit-scrollbar-thumb:hover {
+    background: var(--primary-color);
+}
+
+/* --- Từng mục bình luận --- */
+.comment-item-container {
+    perspective: 1000px;
+}
+
+.comment-item {
+    display: flex;
+    gap: 12px;
+    padding: 12px;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border-left: 3px solid transparent;
+    transition: var(--transition-smooth);
+    animation: slideIn 0.4s ease forwards;
+}
+
+.comment-item:hover {
+    background: rgba(255, 255, 255, 0.07);
+    border-left-color: var(--primary-color);
+    transform: translateX(5px) scale(1.01);
+    box-shadow: -10px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Avatar - Bo góc theo phong cách bài viết */
+.comment-avatar-inside {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+    border: 2px solid var(--border-color);
+    transition: var(--transition-fast);
+}
+
+.comment-item:hover .comment-avatar-inside {
+    border-color: var(--primary-color);
+    transform: rotate(-5deg);
+    box-shadow: 0 0 10px var(--primary-glow);
+}
+
+/* Nội dung bình luận */
+.comment-content-box {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.comment-header-mini {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.comment-user-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.username-mini {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+/* Badge Level Cam Vàng */
+.user-badge-mini {
+    background: linear-gradient(90deg, var(--primary-color), var(--gold-color));
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 800;
+    padding: 1px 6px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    box-shadow: 0 0 5px var(--primary-glow);
+}
+
+.comment-time {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+}
+
+.comment-body {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #ccc;
+    word-break: break-word;
+}
+
+/* --- Nút hành động --- */
+.comment-actions-menu {
+    display: flex;
+    gap: 8px;
+    opacity: 0;
+    transition: var(--transition-fast);
+}
+
+.comment-item:hover .comment-actions-menu {
+    opacity: 1;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 6px;
+    transition: all 0.2s;
+}
+
+.action-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+}
+
+.action-btn.edit:hover { color: var(--primary-color); }
+.action-btn.delete:hover { color: var(--accent-color); }
+.action-btn.report:hover { color: var(--gold-color); }
+
+/* --- Input Area --- */
+.quick-comment-input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 8px 12px;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: var(--transition-fast);
+}
+
+.quick-comment-input-container:focus-within {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px var(--primary-glow);
+    transform: translateY(-2px);
+}
+
+.comment-input-mini {
+    flex: 1;
+    background: none;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 0.9rem;
+    padding: 8px 0;
+}
+
+/* Nút gửi màu Cam */
+.send-comment-mini {
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.send-comment-mini:hover:not(:disabled) {
+    transform: rotate(10deg) scale(1.1);
+    box-shadow: 0 0 15px var(--primary-color);
+}
+
+.send-comment-mini:disabled {
+    background: #333;
+    color: #666;
+    cursor: not-allowed;
+}
+
+/* --- Chế độ sửa (Edit Mode) --- */
+.edit-comment-form {
+    margin-top: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.edit-input-mini {
+    background: #1a1a1a;
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    color: #fff;
+    padding: 10px;
+    font-family: inherit;
+    resize: none;
+}
+
+.edit-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.save-btn, .cancel-btn {
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    border: none;
+    font-weight: 600;
+}
+
+.save-btn { background: var(--primary-color); color: #fff; }
+.cancel-btn { background: #333; color: #fff; }
+
+/* --- Animations --- */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* No comments state */
+.no-comments {
+    text-align: center;
+    padding: 30px;
+    color: var(--text-muted);
+    font-style: italic;
+    border: 1px dashed var(--border-color);
+    border-radius: 12px;
+}

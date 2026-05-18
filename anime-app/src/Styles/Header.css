@@ -1,0 +1,308 @@
+/* --- BIẾN MÀU SẮC & HIỆU ỨNG --- */
+:root {
+    --gold-primary: #ffcc00;
+    --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+    --red-main: #dc2626;
+    --glass: rgba(0, 0, 0, 0.85);
+}
+
+/* --- HEADER CHUNG --- */
+header {
+    transition: all 0.3s ease;
+}
+
+/* --- ANIMATION --- */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-100%); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-slideDown {
+    animation: slideDown 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+/* --- TỐI ƯU MOBILE (DƯỚI 768PX) --- */
+@media (max-width: 768px) {
+    header {
+        padding: 0.6rem 1rem !important; /* Thu nhỏ header */
+        height: 60px;
+    }
+
+    /* Thu nhỏ logo */
+    header h2 {
+        font-size: 1.2rem !important;
+        letter-spacing: -1px;
+    }
+
+    /* Ẩn bớt các khoảng trống không cần thiết */
+    .space-x-12 { space-x: 0 !important; }
+    
+    /* Khu vực bên phải (Search + Profile) */
+    .flex.items-center.space-x-3 {
+        gap: 0.5rem !important;
+    }
+
+    /* 1. CSS CHO MOBILE SEARCH OVERLAY */
+    .fixed.inset-0.bg-black {
+        background: #0a0a0a !important; /* Nền tối tuyệt đối cho search */
+        padding: 0 15px;
+    }
+
+    .fixed.inset-0.bg-black form {
+        background: #1a1a1a;
+        border: 1px solid var(--red-main);
+        box-shadow: 0 0 15px rgba(220, 38, 38, 0.2);
+    }
+
+    /* 2. CSS CHO PROFILE & AVATAR TRÊN MOBILE */
+    .border-l.border-gray-700.pl-4 {
+        border-left: none !important; /* Bỏ vạch ngăn cách cho thoáng */
+        padding-left: 0 !important;
+        gap: 0.75rem !important;
+    }
+
+    /* Profile Trigger khi được nhấn */
+    .profile-trigger {
+        position: relative;
+        padding: 2px !important;
+    }
+
+    /* Avatar Mobile */
+    .w-8.h-8 {
+        width: 35px !important;
+        height: 35px !important;
+        border-width: 2px !important;
+    }
+
+    /* Hiệu ứng quầng sáng khi ở Tab Profile */
+    .profile-trigger.bg-red-600\/10 .w-8.h-8 {
+        border-color: var(--red-main) !important;
+        box-shadow: 0 0 12px var(--red-main);
+    }
+
+    /* 3. NÚT THOÁT & ĐĂNG KÝ TRÊN MOBILE */
+    button.text-gray-400.hover\:text-red-600 {
+        font-size: 10px !important;
+        background: rgba(255, 255, 255, 0.05);
+        padding: 4px 8px;
+        border-radius: 6px;
+    }
+
+    /* Nút Đăng ký Mobile gọn hơn */
+    .bg-red-600.px-3.py-2 {
+        padding: 6px 12px !important;
+        font-size: 10px !important;
+        border-radius: 6px !important;
+        letter-spacing: 0.5px;
+    }
+
+    /* 4. ĐIỀU CHỈNH SEARCH ICON MOBILE */
+    button.flex.md\:hidden.text-gray-400 {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 50%;
+        width: 38px;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.2s;
+    }
+
+    button.flex.md\:hidden.text-gray-400:active {
+        background: var(--red-main);
+        color: white;
+        transform: scale(0.9);
+    }
+}
+
+/* --- HIỆU ỨNG CHUNG CHO DESKTOP (VẪN GIỮ ĐỂ ĐỒNG BỘ) --- */
+.group:hover .text-red-600 {
+    text-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+}
+
+header input::placeholder {
+    color: #555;
+    font-size: 12px;
+}
+/* --- NÚT 3 GẠCH (MOBILE ONLY) --- */
+.mobile-menu-btn {
+    display: none;
+    color: white;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/* --- NAV MENU TRÊN DESKTOP --- */
+.nav-menu ul {
+    display: flex;
+    gap: 1.5rem;
+}
+
+/* --- RESPONSIVE MOBILE (Dưới 1024px) --- */
+@media (max-width: 1024px) {
+    .mobile-menu-btn {
+        display: block; /* Hiện nút 3 gạch */
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 0;
+        left: -300px; /* Ẩn menu sang bên trái */
+        width: 280px;
+        height: 100vh;
+        background: #0f0f0f;
+        z-index: 999;
+        transition: all 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 10px 0 30px rgba(0,0,0,0.5);
+    }
+
+    .nav-menu.open {
+        left: 0; /* Hiện menu khi có class open */
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 30px;
+    }
+
+    .nav-menu ul button {
+        width: 100%;
+        text-align: left;
+        padding: 15px;
+        font-size: 1.1rem;
+        background: rgba(255,255,255,0.03);
+        border-radius: 12px;
+    }
+
+    /* Tiêu đề trong Menu mobile */
+    .menu-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+        padding-bottom: 15px;
+    }
+
+    .menu-title {
+        color: #dc2626;
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+    }
+
+    /* Lớp nền mờ che nội dung khi mở menu */
+    .menu-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.7);
+        backdrop-filter: blur(4px);
+        z-index: 998;
+    }
+}
+/* --- ANIMATIONS --- */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-100%); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fabPop {
+    0% { opacity: 0; transform: scale(0.5) translateY(50px); }
+    70% { transform: scale(1.1) translateY(-5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-slideDown { animation: slideDown 0.3s ease-out forwards; }
+.animate-fabPop { animation: fabPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.animate-fadeIn { animation: fadeIn 0.3s ease forwards; }
+
+/* --- TỐI ƯU GIAO DIỆN MOBILE --- */
+@media (max-width: 1024px) {
+    header {
+        height: 70px;
+        padding: 0 1.5rem !important;
+    }
+
+    /* Thu nhỏ logo trên mobile */
+    header h2 {
+        font-size: 1.3rem !important;
+        letter-spacing: -0.5px;
+    }
+
+    /* Ẩn các chi tiết rườm rà trên header mobile để thoáng hơn */
+    .profile-trigger {
+        background: transparent !important;
+        border: none !important;
+    }
+
+    /* Avatar mobile */
+    .w-8.h-8 {
+        width: 36px !important;
+        height: 36px !important;
+        border-color: var(--border-white) !important;
+    }
+}
+
+/* --- HIỆU ỨNG NÚT TRÒN (FAB) --- */
+.fixed.bottom-8.right-6 button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+/* Hiệu ứng nhịp thở cho nút chính khi chưa mở */
+.bg-red-600.w-16.h-16:not(.rotate-\[360deg\]) {
+    animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+    0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(220, 38, 38, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+}
+
+/* Glassmorphism cho nhãn tên link */
+span.bg-black\/80 {
+    backdrop-filter: blur(5px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+/* Animation cho FAB bung lên */
+@keyframes fabPop {
+    0% { opacity: 0; transform: scale(0.5) translateY(50px); }
+    70% { transform: scale(1.1) translateY(-5px); }
+    100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Animation mờ nền */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Animation trượt xuống cho Search Mobile */
+@keyframes slideDown {
+    from { transform: translateY(-100%); }
+    to { transform: translateY(0); }
+}
+
+.animate-fabPop { animation: fabPop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards; }
+.animate-fadeIn { animation: fadeIn 0.3s ease forwards; }
+.animate-slideDown { animation: slideDown 0.3s ease-out forwards; }
+
+/* Tùy chỉnh vị trí nút Back to Top cho Mobile để không bị đè lên FAB */
+@media (max-width: 1024px) {
+    .fixed.bottom-28.right-8 {
+        bottom: 105px; /* Nằm ngay trên nút FAB đỏ */
+        right: 28px;
+    }
+}

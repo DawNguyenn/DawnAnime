@@ -1,0 +1,413 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+
+:root {
+    --primary: #ff3e3e;
+    --primary-glow: rgba(255, 62, 62, 0.4);
+    --bg-dark: #080808;
+    --sidebar-bg: #0f0f0f;
+    --card-bg: #161616;
+    --text-main: #e0e0e0;
+    --text-dim: #888888;
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.admin-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', sans-serif;
+}
+
+/* --- SIDEBAR TÂN TRANG --- */
+.admin-sidebar {
+    width: 280px;
+    background-color: var(--sidebar-bg);
+    padding: 2.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid rgba(255, 255, 255, 0.03);
+    position: fixed;
+    height: 100vh;
+    z-index: 100;
+}
+
+.sidebar-logo {
+    font-size: 1.6rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.sidebar-logo span {
+    color: var(--primary);
+    position: relative;
+}
+
+/* Sidebar Navigation */
+.sidebar-nav {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+/* Nút Home đặc biệt */
+.btn-home {
+    background: rgba(59, 130, 246, 0.05) !important;
+    color: #60a5fa !important;
+    border: 1px solid rgba(96, 165, 250, 0.1) !important;
+    margin-bottom: 1rem;
+}
+.btn-home:hover {
+    background: #3b82f6 !important;
+    color: white !important;
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.3);
+}
+
+.sidebar-nav button {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 0.9rem 1.25rem;
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-dim);
+    border-radius: 12px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.sidebar-nav button i { font-size: 1.1rem; }
+
+.sidebar-nav button:hover {
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    transform: translateX(5px);
+}
+
+/* Trạng thái Active cho Chờ duyệt (Đỏ) */
+.sidebar-nav button.active {
+    background: var(--primary);
+    color: #fff;
+    border: 1px solid var(--primary);
+    box-shadow: 0 8px 25px -5px var(--primary-glow);
+}
+
+/* Trạng thái Active cho Trung tâm tố cáo (Cam) */
+.sidebar-nav button.active-orange {
+    background: #ea580c;
+    color: #fff;
+    box-shadow: 0 8px 25px -5px rgba(234, 88, 12, 0.4);
+}
+
+/* Nút Thoát */
+.btn-logout {
+    margin-top: auto;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.1);
+    color: #ef4444;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.btn-logout:hover {
+    background: #ef4444;
+    color: white;
+    box-shadow: 0 0 20px rgba(239, 68, 68, 0.3);
+}
+
+/* --- MAIN CONTENT --- */
+.admin-main {
+    flex: 1;
+    margin-left: 280px;
+    padding: 3rem;
+}
+
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+}
+
+.main-header h2 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    background: linear-gradient(to right, #fff, #666);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* --- CARD LIST --- */
+.content-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    gap: 1.5rem;
+}
+
+.admin-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 1.25rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    transition: var(--transition);
+}
+
+.admin-card:hover {
+    border-color: rgba(255, 62, 62, 0.3);
+    transform: translateY(-5px);
+    background: #1c1c1c;
+}
+
+.card-meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.username {
+    color: var(--primary);
+    font-weight: 800;
+    font-size: 0.85rem;
+}
+
+.post-text {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #bbb;
+    margin-bottom: 1rem;
+}
+
+/* Ảnh trong bài viết */
+.admin-post-media .post-image-grid {
+    height: 200px !important;
+    border-radius: 10px;
+    filter: brightness(0.8);
+    transition: 0.3s;
+}
+.admin-card:hover .post-image-grid { filter: brightness(1); }
+
+/* Nút hành động trong Card */
+.card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background: #222;
+    color: #eee;
+    transition: var(--transition);
+}
+
+.approve:hover { background: #10b981; box-shadow: 0 0 15px rgba(16, 185, 129, 0.4); }
+.reject:hover { background: #ef4444; box-shadow: 0 0 15px rgba(239, 68, 68, 0.4); }
+
+/* --- QUẢN LÝ THÀNH VIÊN (BẢNG) --- */
+.user-management-section {
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.admin-user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.admin-user-table th {
+    padding: 1.25rem;
+    text-align: left;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.admin-user-table td {
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.admin-user-table tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+/* --- TABLE WRAPPER & USER TABLE --- */
+.table-wrapper {
+    background: var(--card-bg);
+    border-radius: 16px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    overflow: hidden;
+    margin-top: 1rem;
+}
+
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.user-table th {
+    background: rgba(255, 255, 255, 0.02);
+    padding: 1.25rem;
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.user-table td {
+    padding: 1.25rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+    vertical-align: middle;
+}
+
+.user-tag {
+    color: #60a5fa;
+    font-weight: 700;
+}
+
+.user-email {
+    color: var(--text-dim);
+    font-family: monospace;
+}
+
+/* --- EXP SYSTEM --- */
+.exp-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.level-text {
+    color: #facc15; /* Màu vàng Gold cho Level */
+}
+
+.exp-text {
+    color: var(--text-dim);
+}
+
+.exp-container {
+    width: 100%;
+    height: 6px;
+    background: #222;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.exp-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #3b82f6, #2dd4bf);
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+    border-radius: 10px;
+    transition: width 0.5s ease-out;
+}
+/* --- REPORT CARD SPECIFIC --- */
+.report-card {
+    border-left: 4px solid #ea580c !important; /* Viền cam cảnh báo */
+    background: linear-gradient(145deg, #161616, #1a120f) !important;
+}
+
+.report-badge {
+    background: rgba(234, 88, 12, 0.15);
+    color: #fb923c;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    border: 1px solid rgba(234, 88, 12, 0.2);
+}
+
+.report-target-content {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 1rem;
+    border-radius: 8px;
+    margin: 10px 0;
+    font-style: italic;
+    color: #ddd;
+    border: 1px dashed #333;
+    font-size: 0.9rem;
+}
+
+.report-reason {
+    margin-top: 10px;
+    padding: 8px 12px;
+    background: rgba(239, 68, 68, 0.05);
+    border-radius: 6px;
+    color: #f87171;
+    font-size: 0.85rem;
+}
+
+.report-reason strong {
+    color: #ef4444;
+}
+
+/* Hiệu ứng xoay cho nút Refresh */
+.animate-spin {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Empty State */
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem;
+    color: var(--text-dim);
+    border: 2px dashed #222;
+    border-radius: 20px;
+    font-style: italic;
+}
+.btn-refresh {
+    background: #1f1f1f;
+    border: 1px solid #333;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+}
+
+.btn-refresh:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    box-shadow: 0 0 15px var(--primary-glow);
+}
